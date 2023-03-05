@@ -6,9 +6,12 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
   },
-  number: {
-    type: String,
+  password:{
+    type:String
   },
+  role:{
+    type:String
+  }
 });
 
 module.exports = userSchema;

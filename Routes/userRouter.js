@@ -9,13 +9,14 @@ router.post("/addUser", async (req, res) => {
   console.log(newUser, "..................");
   const result = await User.create(newUser);
   console.log(result);
-
   if (result) {
     res.send({ success: true, data: result });
   } else {
     res.send({ error: "had a error in code" });
   }
-})
+});
+
+
 
 router.get("/", async (req, res) => {
   //   res.send({name:"zinku",email:"sarwarasink@gmail.com"})

@@ -18,7 +18,7 @@ const blogsSchema = mongoose.Schema({
   img: {
     type: String,
   },
-  message: {
+  detail: {
     type: String,
   },
 });
