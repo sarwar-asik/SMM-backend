@@ -14,13 +14,15 @@ router.post("/addBlogs", async (req, res) => {
   const getUser = await User.findOne({ email: req.query.user });
   // console.log(getUser,"11111111111");
   if (getUser?.role === "admin") {
-    // console.log(getUser, "222222222222");
+    console.log(getUser, "222222222222");
     const result = await Blog.create(initialData);
     if (result) {
       res.send({ success: true });
     } else {
       res.send({ error: "have an error from mongodb" });
     }
+  } else {
+    res.status(200).send({ error: "You are not Admin ." });
   }
 });
 
@@ -37,9 +39,8 @@ router.delete("/deleteBlog", async (req, res) => {
     } else {
       res.send({ error: "have an error from mongodb" });
     }
-  }
-  else{
-    res.send({error:"please, send as admin"})
+  } else {
+    res.send({ error: "please, send as admin" });
   }
 });
 
