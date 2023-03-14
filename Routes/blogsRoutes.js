@@ -26,6 +26,32 @@ router.post("/addBlogs", async (req, res) => {
   }
 });
 
+router.put("/EditBlog", async (req, res) => {
+  const initialData = new Blog(req.body);
+  // console.log(initialData, "newData", req.query.user);
+  const data = req.body;
+  const mainId = req.body.mainId;
+  const getUser = await User.findOne({ email: req.query.user });
+  // console.log(getUser,"11111111111");
+  if (getUser?.role === "admin") {
+    delete data?.mainId;
+    // console.log(data.mainId,"data....",mainId);
+    // console.log(getUser, "222222222222",mainId);
+    const filter = { _id: new ObjectId(mainId) };
+    const options = { new: true, upsert: true };
+    // console.log(filter, options, data);
+    const result = await Blog.findOneAndUpdate(filter, data, options);
+    if (result) {
+      res.send({ success: true });
+    } else {
+      res.send({ error: "have an error from mongodb" });
+    }
+    console.log(result,"result=======");
+  } else {
+    res.status(200).send({ error: "You are not Admin ." });
+  }
+});
+
 router.delete("/deleteBlog", async (req, res) => {
   const id = req.body._id;
   // console.log(id, "dddddddddd");
@@ -51,7 +77,7 @@ router.get("/blogs", async (req, res) => {
     } else {
       res.send(result);
     }
-  });
+  }).sort({ time: -1, date: -1 });
 });
 
 module.exports = router;

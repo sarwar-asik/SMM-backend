@@ -18,16 +18,17 @@ router.post("/addUser", async (req, res) => {
 
 
 
-router.get("/", async (req, res) => {
-  //   res.send({name:"zinku",email:"sarwarasink@gmail.com"})
-  //   console.log("searching".red);
-  User.find({}, (error, result) => {
-    if (error) {
-      res.status(501).send({ message: "Had a error from server" });
-    } else {
-      res.status(200).send(result);
-    }
-  });
-});
+// router.get("/", async (req, res) => {
+  
+//   //   res.send({name:"zinku",email:"sarwarasink@gmail.com"})
+//   //   console.log("searching".red);
+//   User.find({}, (error, result) => {
+//     if (error) {
+//       res.status(501).send({ message: "Had a error from server" });
+//     } else {
+//       res.status(200).send(result);
+//     }
+//   });
+// });
 
 module.exports = router;

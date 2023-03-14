@@ -11,13 +11,20 @@ const port = process.env.PORT || 9000;
 mongoose.set("strictQuery", false);
 
 app.use(cors());
+
 app.use(express.json());
+
 // console.log("test");
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}>@cluster0.ysfeeva.mongodb.net/?retryWrites=true&w=majority`;
 
 // console.log(uri);
-const uri =
-  "mongodb+srv://mihanDB:mihan2023@cluster0.ysfeeva.mongodb.net/?retryWrites=true&w=majority";
+// const uri =
+//   ;
+
+// console.log(process.env.URI, "url");
+const uri = process.env.URI;
+// console.log(uri, "uri");
+
 mongoose.connect(
   uri,
   () => {
